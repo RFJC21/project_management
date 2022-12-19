@@ -116,3 +116,8 @@ else:
                     # to store the dataframe in specified sheet
                     df.to_excel(writer, sheet_name="projects_2023", index=False)
                     df_fte.to_excel(writer, sheet_name="FTE", index=False)
+
+# download table updated from server
+st.sidebar.write('##')
+st.sidebar.download_button(label='📥 Download Tasks', data=df.to_csv(), mime='text/csv')
+
