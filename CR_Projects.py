@@ -45,6 +45,7 @@ if project:
 
     st.dataframe(df)
 else:
+    st.subheader('Timeline')
     fig = px.timeline(df,
                       x_start="Start_Date",
                       x_end="End_Date",
@@ -52,7 +53,7 @@ else:
                       color="Owner",
                       animation_group='Task',
                       text='Resources',
-                      title='CR Projects Timeline',
+                      #title='CR Projects Timeline',
                       color_continuous_scale=px.colors.sequential.Plasma)
 
     fig.update_yaxes(autorange="reversed")
@@ -62,6 +63,8 @@ else:
     st.plotly_chart(fig)
 
     # edit the excel file with new inputs
+    st.subheader('Edit tasks/subtasks')
+
     gd = GridOptionsBuilder.from_dataframe(df)
     gd.configure_pagination(enabled=True)
     gd.configure_default_column(editable=True, groupable=True)
@@ -85,6 +88,7 @@ else:
             df_fte.to_excel(writer, sheet_name="FTE", index=False)
 
     st.write('##')
+    st.subheader('Add tasks/subtasks')
     if st.checkbox('Add new task/subtask'):
         with st.form('Form'):
             start_date = st.date_input('Start Date')
